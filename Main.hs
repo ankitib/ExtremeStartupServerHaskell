@@ -32,6 +32,3 @@ convtToIntArray x= convtStringArrToIntArr . P.filter (P.all isDigit) .
 
 convtStringArrToIntArr::[String]->[Int]
 convtStringArrToIntArr = P.map read 
-
-
-
