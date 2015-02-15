@@ -25,6 +25,7 @@ processQuery x
   | D.unpack x=~ D.unpack "which of the following numbers are primes: [0-9]*"  ::Bool = intArrToText $ findPrime (convtToIntArray x)
   | D.unpack x=~ D.unpack "what is [0-9]* minus [0-9]*"  ::Bool = intToText $ minus (convtToIntArray x)
   | D.unpack x=~ D.unpack "what is the [0-9]*th number in the Fibonacci sequence"  ::Bool = intToText $ fibonacci $ getNumberEndingWithTH x
+  | D.unpack x=~ D.unpack "what is [0-9]* to the power of [0-9]*"  ::Bool = intToText $ calPower $ convtToIntArray x
   | D.unpack x=~ D.unpack "which city is the Eiffel tower in"  ::Bool =  D.pack "Paris"
   | D.unpack x=~ D.unpack "who played James Bond in the film Dr No"  ::Bool =  D.pack "Sean Connery"
   | D.unpack x=~ D.unpack "who is the Prime Minister of Great Britain"  ::Bool =  D.pack "David Cameron"
@@ -61,6 +62,9 @@ findPrime x= P.filter isPrime x
 
 minus::[Int]->Int
 minus x= P.head x - (sum $ P.tail x)
+
+calPower::[Int]->Int
+calPower x= P.head x ^ (P.last x)
 
 fibonacci ::Int -> Int
 fibonacci x
