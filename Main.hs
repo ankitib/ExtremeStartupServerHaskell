@@ -23,10 +23,13 @@ processQuery x
   | D.unpack x=~ D.unpack "what is [0-9]* multiplied by [0-9]*"  ::Bool = intToText $ product (convtToIntArray x)
   | D.unpack x=~ D.unpack "which of the following numbers is both a square and a cube: [0-9]*"  ::Bool = intArrToText $ findSqRootCubeRoot (convtToIntArray x)
   | D.unpack x=~ D.unpack "which of the following numbers are primes: [0-9]*"  ::Bool = intArrToText $ findPrime (convtToIntArray x)
+  | D.unpack x=~ D.unpack "what is [0-9]* minus [0-9]*"  ::Bool = intToText $ minus (convtToIntArray x)
+  | D.unpack x=~ D.unpack "what is the [0-9]*th number in the Fibonacci sequence"  ::Bool = intToText $ fibonacci $ getNumberEndingWithTH x
   | D.unpack x=~ D.unpack "which city is the Eiffel tower in"  ::Bool =  D.pack "Paris"
   | D.unpack x=~ D.unpack "who played James Bond in the film Dr No"  ::Bool =  D.pack "Sean Connery"
   | D.unpack x=~ D.unpack "who is the Prime Minister of Great Britain"  ::Bool =  D.pack "David Cameron"
   | D.unpack x=~ D.unpack "what colour is a banana"  ::Bool =  D.pack "Yellow"
+  | D.unpack x=~ D.unpack "what currency did Spain use before the Euro"  ::Bool =  D.pack "peseta"
   |otherwise = D.pack "-1"
   
 intToText::Int->Text
@@ -55,3 +58,16 @@ isPrime x
 
 findPrime::[Int]->[Int]
 findPrime x= P.filter isPrime x
+
+minus::[Int]->Int
+minus x= P.head x - (sum $ P.tail x)
+
+fibonacci ::Int -> Int
+fibonacci x
+	|x<=0=0
+	|x==1=1
+	|otherwise = (fibonacci $x-2) + (fibonacci $x-1)
+
+getNumberEndingWithTH::Text->Int
+getNumberEndingWithTH x= read ((( (D.unpack x) =~ D.unpack " ([0-9]+)th* " ::[[String]]) !! 0) !! 1) :: Int
+
