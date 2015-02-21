@@ -18,7 +18,7 @@ executable extremeStartupServer
                      , http-types
                      , resourcet
                      , scotty
-                     , arithmoi
+                     , arithmoi >= 0.4 && < 0.4.1.1
                      , containers
                      , text
                      , regex-posix
