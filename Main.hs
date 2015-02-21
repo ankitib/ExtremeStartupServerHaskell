@@ -9,13 +9,18 @@ import Text.Regex.Posix
 import Math.NumberTheory.Powers
 import Data.Map as Map
 import Data.List as L
+import Control.Monad
+import System.Environment
 
-main = scotty 4000 $ do
-    middleware logStdoutDev
 
-    get "/" $ do
-        beam<- param "q" :: ActionM D.Text
-        text $ processQuery (beam)
+main = do
+       port <- liftM read $ getEnv "PORT"
+       scotty port $ do
+          middleware logStdoutDev
+
+          get "/" $ do
+             beam<- param "q" :: ActionM D.Text
+             text $ processQuery (beam)
 
 
 processQuery :: D.Text -> Text

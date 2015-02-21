@@ -1,0 +1,32 @@
+name:                extremeStartupServer
+version:             0.0.1
+synopsis:            Extreme Startup Server Player implemented on Haskell
+homepage:            https://github.com/ankitib/ExtremeStartupServerHaskell
+license:             MIT
+author:              Ankit Tibrewal
+maintainer:          ankitibrewal@email.com
+category:            Web
+build-type:          Simple
+cabal-version:       >=1.8
+
+executable extremeStartupServer
+  main-is:             Main.hs
+  -- other-modules:       
+  build-depends:       base ==4.7.*
+                     , wai
+                     , warp
+                     , http-types
+                     , resourcet
+                     , scotty
+                     , arithmoi
+                     , containers
+                     , text
+                     , regex-posix
+                     , bytestring
+                     , blaze-html
+                     , monad-logger ==0.3.*
+                     , heroku
+                     , transformers
+                     , wai-middleware-static
+                     , wai-extra
+                     , time
