@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+
 import Web.Scotty
 import Network.Wai.Middleware.RequestLogger
 import RequestProcessor
@@ -13,7 +14,7 @@ main = do
 
           get "/" $ do
              beam<- param "q" :: ActionM D.Text
-             text $ processQuery (beam)
+             text $ processQuery $ D.unpack (beam)
 
 
 
