@@ -59,10 +59,9 @@ intToText x = D.pack $ show x
 intArrToText :: [Int] -> Text
 intArrToText [] = D.pack ""
 intArrToText x = D.pack $ P.foldl (\x y -> P.concat [x,", ",y]) (show $P.head x) (P.map show (P.tail x)) 
---intArrToText x = replace (pack ",") (pack ", ") $ D.pack $P.init $P.tail $show x -- putting a space after comma
 
 integerToText :: Integer -> Text
-integerToText x = D.pack $ show $x 
+integerToText x = D.pack $ show x 
 
 convtToIntArray :: String -> [Int]
 convtToIntArray x = convtStringArrToIntArr . P.filter (P.all isDigit) . 
@@ -95,7 +94,7 @@ fibonacci 1 = 1
 fibonacci x = (fibonacci $x-2) + (fibonacci $x-1)
 
 getNumberEndingWithTH :: String -> Int
-getNumberEndingWithTH x = read ((P.head (  x =~ D.unpack " ([0-9]+)th* " ::[[String]])) !! 1) :: Int
+getNumberEndingWithTH x = read $P.head (P.drop 1 $ (P.head (  x =~ D.unpack " ([0-9]+)th* " ::[[String]]))) :: Int
 
 multiplyPlus :: [Int] -> Int
 multiplyPlus (x:y:z) = (x * y) + (P.head z)
@@ -106,7 +105,7 @@ plusMultiply (x:y:z) = x+y*(P.head z)
 scrabbleMap=Map.fromList [('a',1),('b',3),('c',3),('d',2),('e',1),('f',4),('g',2),('h',4),('i',1),('j',8),('k',5),('l',1),('m',3),('n',1),('o',1),('p',3),('q',10),('r',1),('s',1),('t',1),('u',1),('v',4),('w',4),('x',8),('y',4),('z',10)]
 
 getScrabbleSum :: String -> Int
-getScrabbleSum x = sum $ fmap (\y->scrabbleMap ! C.toLower y) x 
+getScrabbleSum x = sum $ P.map (\y->scrabbleMap ! C.toLower y) x 
 
 getAnagramMatch :: String -> [String]
 getAnagramMatch x = P.head (x =~ D.unpack " which of the following is an anagram of \"(.*)\": (.*)" ::[[String]])
