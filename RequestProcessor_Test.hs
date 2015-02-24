@@ -5,7 +5,7 @@ import RequestProcessor (processQuery)
 import Data.Text.Lazy as D
 default(String)
 
-tests = TestList [testAddTwoNumbers,testfindLargeinTwoNumbers,testfindLargeinThreeNumbers,testfindLargeinFourNumbers,testSquareCubeEmpty,testSquareCube,testMultiply,testPrimeSingleNumber,testPrimeDoubleNumber,testBritainPrimeMinister,testSpainCurrency,testEiffelTower,testJamesBond,testBananaColour,testFibonacci,testSubtraction,testSubtractionNegative,testPower,testPowerHighRange,testPlusPlus,testMultiplyPlus,testPlusMultiply,testAnagramDictionary,testAnagramAdmirer,testScrabbleBanana,testScrabbleRuby]
+tests = TestList [testAddTwoNumbers,testfindLargeinTwoNumbers,testfindLargeinThreeNumbers,testfindLargeinFourNumbers,testSquareCubeEmpty,testSquareCube,testSquareCubeTwoNumbers,testMultiply,testPrimeSingleNumber,testPrimeDoubleNumber,testBritainPrimeMinister,testSpainCurrency,testEiffelTower,testJamesBond,testBananaColour,testFibonacci,testSubtraction,testSubtractionNegative,testPower,testPowerHighRange,testPlusPlus,testMultiplyPlus,testPlusMultiply,testAnagramDictionary,testAnagramAdmirer,testScrabbleBanana,testScrabbleRuby]
 
 testAddTwoNumbers = TestCase $ assertEqual "Addition answer" (D.pack "19") (( processQuery $ "09046f30: what is 7 plus 12" ))
 
@@ -18,6 +18,8 @@ testfindLargeinFourNumbers = TestCase $ assertEqual "Large number in four number
 testSquareCubeEmpty = TestCase $ assertEqual "Find Number both square Cube Empty" (D.pack "") (( processQuery $ "a0d099c0: which of the following numbers is both a square and a cube: 752, 2209" ))
 
 testSquareCube = TestCase $ assertEqual "Find Number both square Cube" (D.pack "1000000") (( processQuery $ "a0d099c0: which of the following numbers is both a square and a cube: 752, 1000000" ))
+
+testSquareCubeTwoNumbers = TestCase $ assertEqual "Find Number both square Cube two" (D.pack "1000000, 729") (( processQuery $ "a0d099c0: which of the following numbers is both a square and a cube: 752, 1000000, 729" ))
 
 testMultiply = TestCase $ assertEqual "Multiply" (D.pack "13") (( processQuery $ "9f9e5630: what is 13 multiplied by 1" ))
 
@@ -49,7 +51,7 @@ testPlusPlus = TestCase $ assertEqual "Three number Plus" (D.pack "28") (( proce
 
 testMultiplyPlus = TestCase $ assertEqual "Multiply Plus" (D.pack "48") (( processQuery $ "f04d73b0: what is 13 multiplied by 3 plus 9" ))
 
-testPlusMultiply = TestCase $ assertEqual "Plus Multiply" (D.pack "9") (( processQuery $ "f04d73b0: what is 8 plus 1 multiplied by 1" ))
+testPlusMultiply = TestCase $ assertEqual "Plus Multiply" (D.pack "16") (( processQuery $ "f04d73b0: what is 8 plus 1 multiplied by 8" ))
 
 testAnagramDictionary = TestCase $ assertEqual "Anagram" (D.pack "indicatory") (( processQuery $ "23a32380: which of the following is an anagram of \"dictionary\": butterfly, abdication, indicatory, incendiary" ))
 
