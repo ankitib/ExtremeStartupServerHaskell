@@ -33,7 +33,7 @@ processQuery x
   
   | x =~ D.unpack "what is [0-9]* minus [0-9]*"  ::Bool = intToText $ minus (convtToIntArray x)
   
-  | x =~ D.unpack "what is the [0-9]*th number in the Fibonacci sequence"  ::Bool = intToText $ fibonacci $ getNumberEndingWithTH x
+  | x =~ D.unpack "what is the [0-9]+.. number in the Fibonacci sequence"  ::Bool = intToText $ fibonacci $ getFibonacciNumFromString x
   
   | x =~ D.unpack "what is [0-9]* to the power of [0-9]*"  ::Bool = integerToText $ calPower $ convtToIntArray x
   
@@ -93,8 +93,8 @@ fibonacci 0 = 0
 fibonacci 1 = 1
 fibonacci x = (fibonacci $x-2) + (fibonacci $x-1)
 
-getNumberEndingWithTH :: String -> Int
-getNumberEndingWithTH x = read $P.head (P.drop 1 $ (P.head (  x =~ D.unpack " ([0-9]+)th* " ::[[String]]))) :: Int
+getFibonacciNumFromString :: String -> Int
+getFibonacciNumFromString x = read $P.head (P.drop 1 $ (P.head (  x =~ D.unpack " ([0-9]+).. " ::[[String]]))) :: Int
 
 multiplyPlus :: [Int] -> Int
 multiplyPlus (x:y:z) = (x * y) + (P.head z)

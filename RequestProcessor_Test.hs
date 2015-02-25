@@ -5,7 +5,7 @@ import RequestProcessor (processQuery)
 import Data.Text.Lazy as D
 default(String)
 
-tests = TestList [testAddTwoNumbers,testfindLargeinTwoNumbers,testfindLargeinThreeNumbers,testfindLargeinFourNumbers,testSquareCubeEmpty,testSquareCube,testSquareCubeTwoNumbers,testMultiply,testPrimeSingleNumber,testPrimeDoubleNumber,testBritainPrimeMinister,testSpainCurrency,testEiffelTower,testJamesBond,testBananaColour,testFibonacci,testSubtraction,testSubtractionNegative,testPower,testPowerHighRange,testPlusPlus,testMultiplyPlus,testPlusMultiply,testAnagramDictionary,testAnagramAdmirer,testScrabbleBanana,testScrabbleRuby]
+tests = TestList [testAddTwoNumbers,testfindLargeinTwoNumbers,testfindLargeinThreeNumbers,testfindLargeinFourNumbers,testSquareCubeEmpty,testSquareCube,testSquareCubeTwoNumbers,testMultiply,testPrimeSingleNumber,testPrimeDoubleNumber,testBritainPrimeMinister,testSpainCurrency,testEiffelTower,testJamesBond,testBananaColour,testFibonacci,testFibonacciRd,testSubtraction,testSubtractionNegative,testPower,testPowerHighRange,testPlusPlus,testMultiplyPlus,testPlusMultiply,testAnagramDictionary,testAnagramAdmirer,testScrabbleBanana,testScrabbleRuby]
 
 testAddTwoNumbers = TestCase $ assertEqual "Addition answer" (D.pack "19") (( processQuery $ "09046f30: what is 7 plus 12" ))
 
@@ -38,6 +38,8 @@ testJamesBond = TestCase $ assertEqual "james bond" (D.pack "Sean Connery") (( p
 testBananaColour = TestCase $ assertEqual "banana colour" (D.pack "Yellow") (( processQuery $ "0d2a1e80: what colour is a banana" ))
 
 testFibonacci = TestCase $ assertEqual "Fibonacci Sequence" (D.pack "34") (( processQuery $ "95c8f110: what is the 9th number in the Fibonacci sequence" ))
+
+testFibonacciRd = TestCase $ assertEqual "Fibonacci Sequence with Rd" (D.pack "28657") (( processQuery $ "95c8f110: what is the 23rd number in the Fibonacci sequence" ))
 
 testSubtraction = TestCase $ assertEqual "Subtraction" (D.pack "7") (( processQuery $ "c1b68a20: what is 11 minus 4" ))
 
